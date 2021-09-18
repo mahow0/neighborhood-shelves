@@ -36,7 +36,7 @@ class Seq2SeqModel(nn.Module):
         :return:
         '''
 
-        #Tokenize
+        pass
 
 
 
