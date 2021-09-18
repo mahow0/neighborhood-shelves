@@ -6,6 +6,21 @@
     "background": {
       "service_worker": "background.js"
     },
+    "content_scripts": [
+      {
+        "matches": [
+          "https://*.amazon.com/*",
+          "http://*.walmart.com/*",
+          "https://*.walmart.com/*",
+          "http://*.target.com/*",
+          "https://*.target.com/*"
+        ],
+        "js": [
+          "libs/jquery-3.6.0.min.js", 
+          "content.js"
+        ]
+      }
+    ],
     "permissions": ["storage"],
     "action": {
       "default_popup": "popup.html"
