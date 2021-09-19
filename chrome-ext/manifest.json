@@ -21,7 +21,13 @@
         ]
       }
     ],
-    "permissions": ["storage"],
+    "permissions": [
+      "storage", 
+      "geolocation"
+    ],
+    "host_permissions": [
+      "https://maps.googleapis.com/maps/api/place/nearbysearch/json?*"
+    ],
     "action": {
       "default_popup": "popup.html"
     }
