@@ -2,7 +2,7 @@ import torch.nn as nn
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from icecream import ic
 
-class Seq2SeqModel(nn.Module):
+class T5Seq2SeqModel(nn.Module):
 
     def __init__(self, model_name):
         '''
@@ -11,7 +11,7 @@ class Seq2SeqModel(nn.Module):
 
         :param model_name: name of Seq2Seq model from huggingface's repository
         '''
-        super(Seq2SeqModel, self).__init__()
+        super(T5Seq2SeqModel, self).__init__()
 
         self.model_name = model_name
         #Retrieve tokenizer from hugginface
@@ -34,16 +34,14 @@ class Seq2SeqModel(nn.Module):
         return tokenized_strings['input_ids'], tokenized_strings['attention_mask']
 
 
-    def forward(self, input_seqs, label_seqs):
+    def forward(self, input_ids, attention_mask, label_ids):
         '''
         Computes a forward pass on a sequence of non-tokenized inputs
         :param input_seqs (str[]) : Input sequences (represented as lists of strings)
         :return: ouptut (dict) : model output (contains loss, last_hidden_states)
         '''
 
-        input_ids, attention_mask = self.tokenize_batch(input_seqs)
-        label_ids, _ = self.tokenize_batch(label_seqs)
-
+        #print(label_ids)
         output = self.model(input_ids = input_ids,
                             attention_mask = attention_mask,
                             labels = label_ids
@@ -66,7 +64,7 @@ if __name__ == '__main__':
 
     sample_input = ['Hello world!', 'Goodbye to the world!']
     labels = ['label 1', 'label 2']
-    model = Seq2SeqModel('snrspeaks/t5-one-line-summary')
+    model = T5Seq2SeqModel('google/t5-v1_1-base')
 
     ic(model(sample_input, labels))
 
