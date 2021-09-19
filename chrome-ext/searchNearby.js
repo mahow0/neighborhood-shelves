@@ -31,7 +31,7 @@ function searchNearby() {
                                         .filter(place => !topRetailers.includes(place.name.toLowerCase()))
                                         .map(place => place.name + ": " + place.vicinity)
                                         )];
-                                        
+
         let divPlaces = document.getElementById("divPlaces");
 
         divPlaces.classList.toggle('hidden');
