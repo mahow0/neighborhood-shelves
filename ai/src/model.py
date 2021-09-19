@@ -51,6 +51,15 @@ class Seq2SeqModel(nn.Module):
 
         return output
 
+    def generate(self, input_seq, **kwargs):
+
+        input_ids, _ = self.tokenize_batch(input_seq, padding=False)
+        generated_ids = self.model.generate(input_ids = input_ids,  **kwargs)
+        generated_text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
+
+        return generated_text
+
+
 
 
 if __name__ == '__main__':

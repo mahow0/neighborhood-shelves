@@ -13,15 +13,7 @@ def main(model, training_args, train_set, eval_set):
 
     evaluate(trainer)
 
-
-
-
-
-
-
-
-
-
+    pass
 
 
 if __name__ == '__main__':
@@ -72,10 +64,10 @@ if __name__ == '__main__':
     eval_set = None
 
     #Initialize model
-    model_name = ''
-    model = Seq
+    model_name = 'tuner007/pegasus_paraphrase'
+    model = Seq2SeqModel(model_name)
 
-    main(model)
+    main(model, training_args, train_set, eval_set)
 
 
 
